@@ -1,0 +1,21 @@
+安装mysql
+mysqld –install mysql
+
+启动服务
+net start mysql
+
+修改本地登录密码
+-- user: root  password: eoWn_.qQ
+set password for root@localhost = password('eoWn_.qQ');
+
+修改远程登录密码
+-- user: root  password: Ladi.+fs
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Ladi.+fs' WITH GRANT OPTION;
+flush privileges;
+
+查看是否修改成功
+use mysql;
+select host,user from user;
+
+执行sql文件(未能成功,直接手动执行)
+-- mysql -h localhost -u root -peoWn_.qQ < G:\MySQL\chess_sys_db.sql

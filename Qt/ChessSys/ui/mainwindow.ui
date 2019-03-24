@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>544</width>
+    <height>339</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <widget class="QWidget" name="chessRoomPage"/>
+      <widget class="QWidget" name="stockManagePage"/>
+      <widget class="QWidget" name="saleManagePage"/>
+      <widget class="QWidget" name="userInfoPage"/>
+      <widget class="QWidget" name="benefitAnalyPage"/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>544</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="startMenu">
+    <property name="title">
+     <string>开始</string>
+    </property>
+    <addaction name="chessRoomAction"/>
+    <addaction name="stockManageAction"/>
+    <addaction name="userInfoAction"/>
+    <addaction name="saleManageAction"/>
+    <addaction name="benefitAnalyAction"/>
+   </widget>
+   <addaction name="startMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="chessRoomAction">
+   <property name="text">
+    <string>棋牌房间管理</string>
+   </property>
+  </action>
+  <action name="stockManageAction">
+   <property name="text">
+    <string>商品库存管理</string>
+   </property>
+  </action>
+  <action name="userInfoAction">
+   <property name="text">
+    <string>用户信息</string>
+   </property>
+  </action>
+  <action name="saleManageAction">
+   <property name="text">
+    <string>销售管理</string>
+   </property>
+  </action>
+  <action name="benefitAnalyAction">
+   <property name="text">
+    <string>收益分析</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
