@@ -1896,10 +1896,9 @@ int ChessSysUser::deleteTransaction(int transactionId){
     switch(_level){
     case SysAdmin:
     case Boss:
-    case Reception:
         break;
     default:
-        // 只有SysAdmin,Boss,Reception有权限删除销售记录
+        // 只有SysAdmin,Boss有权限删除销售记录
         ret = -101;
         goto exit;
         break;
