@@ -787,7 +787,7 @@ int ChessSysUser::queryChessRoomCurrentCharging(int id, int& minutes, double& am
 
     sql = "select time, " + formula + " as amout from "
           "(select timestampdiff(MINUTE, entry_time, current_timestamp())"
-          " as time from ChessRoomRecord where id = " + QString::number(recordId, 10) +
+          " as time, entry_time, current_timestamp() as closing_time from ChessRoomRecord where id = " + QString::number(recordId, 10) +
           " ) as duration";
     if(!_query.exec(sql)){
         // sql语句执行失败
