@@ -1,273 +1,273 @@
 --
--- åˆ›å»ºæ•°æ®åº“chess_sys_db
+-- ´´½¨Êı¾İ¿âchess_sys_db
 --
 
 -- create database chess_sys_db character set utf8 collate utf8_general_ci;
 
 --
--- UserLevelç”¨æˆ·çº§åˆ«ç»“æ„
+-- UserLevelÓÃ»§¼¶±ğ½á¹¹
 --
 DROP TABLE IF EXISTS UserLevel;
 
 CREATE TABLE UserLevel (
-level int primary key auto_increment, -- ç”¨æˆ·çº§åˆ«(ä¸»é”®)
-name varchar(20) not null -- çº§åˆ«åç§°
+level int primary key auto_increment, -- ÓÃ»§¼¶±ğ(Ö÷¼ü)
+name varchar(20) not null -- ¼¶±ğÃû³Æ
 );
 
--- æ’å…¥åˆå§‹å†…å®¹
+-- ²åÈë³õÊ¼ÄÚÈİ
 LOCK TABLES UserLevel WRITE;
 insert into UserLevel values
-(1, 'æ¸¸å®¢'),
-(2, 'ç³»ç»Ÿç®¡ç†å‘˜'),
-(3, 'è€æ¿'),
-(4, 'å‰å°'),
-(5, 'åº“å­˜ç®¡ç†å‘˜');
+(1, 'ÓÎ¿Í'),
+(2, 'ÏµÍ³¹ÜÀíÔ±'),
+(3, 'ÀÏ°å'),
+(4, 'Ç°Ì¨'),
+(5, '¿â´æ¹ÜÀíÔ±');
 UNLOCK TABLES;
 
 --
--- Userç”¨æˆ·ç»“æ„
+-- UserÓÃ»§½á¹¹
 --
 DROP TABLE IF EXISTS User;
 
 CREATE TABLE User (
-id int primary key auto_increment, -- ç”¨æˆ·ç¼–å·(ä¸»é”®)
-name varchar(50) not null unique, -- ç”¨æˆ·åç§°
-password varchar(20) not null, -- å¯†ç 
-level int not null, -- ç”¨æˆ·çº§åˆ«(å¿…é¡»æ˜¯UserLevelè¡¨ä¸­çš„ä¸»é”®å€¼)
-boss int -- è€æ¿ç¼–å·
+id int primary key auto_increment, -- ÓÃ»§±àºÅ(Ö÷¼ü)
+name varchar(50) not null unique, -- ÓÃ»§Ãû³Æ
+password varchar(20) not null, -- ÃÜÂë
+level int not null, -- ÓÃ»§¼¶±ğ(±ØĞëÊÇUserLevel±íÖĞµÄÖ÷¼üÖµ)
+boss int -- ÀÏ°å±àºÅ
 );
 
--- æ’å…¥åˆå§‹ç®¡ç†å‘˜ç”¨æˆ·ååŠå¯†ç 
+-- ²åÈë³õÊ¼¹ÜÀíÔ±ÓÃ»§Ãû¼°ÃÜÂë
 insert into User values
 (1, 'Admin', 'yaocc118', 2, null);
 
 --
--- CommodityStateå•†å“çŠ¶æ€è¡¨
+-- CommodityStateÉÌÆ·×´Ì¬±í
 --
 DROP TABLE IF EXISTS CommodityState;
 
 CREATE TABLE CommodityState (
-id int primary key auto_increment, -- å•†å“çŠ¶æ€id
-name varchar(20) not null unique -- å•†å“çŠ¶æ€åç§°
+id int primary key auto_increment, -- ÉÌÆ·×´Ì¬id
+name varchar(20) not null unique -- ÉÌÆ·×´Ì¬Ãû³Æ
 );
 
--- æ’å…¥å•†å“çŠ¶æ€ç±»å‹
+-- ²åÈëÉÌÆ·×´Ì¬ÀàĞÍ
 LOCK TABLES CommodityState WRITE;
 insert into CommodityState values
-(1, 'å¾…æ£€'),
-(2, 'åº“å­˜'),
-(3, 'ä¸‹æ¶'),
-(4, 'ä¸Šæ¶');
+(1, '´ı¼ì'),
+(2, '¿â´æ'),
+(3, 'ÏÂ¼Ü'),
+(4, 'ÉÏ¼Ü');
 UNLOCK TABLES;
 
 --
--- Commodityå•†å“è¡¨ç»“æ„
+-- CommodityÉÌÆ·±í½á¹¹
 --
 DROP TABLE IF EXISTS Commodity;
 
 CREATE TABLE Commodity (
-id int primary key auto_increment, -- å•†å“id
-name varchar(50) not null unique, -- å•†å“åç§°
-status int not null, -- çŠ¶æ€
-category int not null, -- ç±»åˆ«
-price decimal(12, 2) not null, -- ä»·æ ¼
-stock int not null, -- åº“å­˜
-bar_code varchar(50), -- æ¡å½¢ç 
-pic_path varchar(260) -- å›¾ç‰‡è·¯å¾„
+id int primary key auto_increment, -- ÉÌÆ·id
+name varchar(50) not null unique, -- ÉÌÆ·Ãû³Æ
+status int not null, -- ×´Ì¬
+category int not null, -- Àà±ğ
+price decimal(12, 2) not null, -- ¼Û¸ñ
+stock int not null, -- ¿â´æ
+bar_code varchar(50), -- ÌõĞÎÂë
+pic_path varchar(260) -- Í¼Æ¬Â·¾¶
 );
 
 --
--- CommodityCategoryå•†å“è¡¨ç»“æ„
+-- CommodityCategoryÉÌÆ·±í½á¹¹
 --
 DROP TABLE IF EXISTS CommodityCategory;
 
 CREATE TABLE CommodityCategory (
-id int primary key auto_increment, -- ç±»åˆ«ç¼–å·
-name varchar(20) not null unique -- ç±»åˆ«åç§°
+id int primary key auto_increment, -- Àà±ğ±àºÅ
+name varchar(20) not null unique -- Àà±ğÃû³Æ
 );
 
 --
--- CommodityPriceChangeså•†å“ä»·æ ¼å˜åŒ–è¡¨
+-- CommodityPriceChangesÉÌÆ·¼Û¸ñ±ä»¯±í
 --
 DROP TABLE IF EXISTS CommodityPriceChanges;
 
 CREATE TABLE CommodityPriceChanges (
-id int primary key auto_increment, -- å•†å“ä»·æ ¼å˜åŒ–è®°å½•ç¼–å·
-commodity_id int not null, -- å•†å“id
-user_id int not null, -- å½•å…¥ç”¨æˆ·ç¼–å·
-entry_time datetime not null, -- å½•å…¥æ—¶é—´
-new_price decimal(12, 2) not null, -- æ–°ä»·æ ¼
-old_price decimal(12, 2), -- åŸä»·æ ¼
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ÉÌÆ·¼Û¸ñ±ä»¯¼ÇÂ¼±àºÅ
+commodity_id int not null, -- ÉÌÆ·id
+user_id int not null, -- Â¼ÈëÓÃ»§±àºÅ
+entry_time datetime not null, -- Â¼ÈëÊ±¼ä
+new_price decimal(12, 2) not null, -- ĞÂ¼Û¸ñ
+old_price decimal(12, 2), -- Ô­¼Û¸ñ
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- Supplierä¾›åº”å•†è¡¨ç»“æ„
+-- Supplier¹©Ó¦ÉÌ±í½á¹¹
 --
 DROP TABLE IF EXISTS Supplier;
 
 CREATE TABLE Supplier (
-id int primary key auto_increment, -- ä¾›åº”å•†ç¼–å·
-name varchar(50) not null unique, -- å•†å“åç§°
-cellphone varchar(20), -- æ‰‹æœº
-telephone varchar(20), -- ç”µè¯
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ¹©Ó¦ÉÌ±àºÅ
+name varchar(50) not null unique, -- ÉÌÆ·Ãû³Æ
+cellphone varchar(20), -- ÊÖ»ú
+telephone varchar(20), -- µç»°
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- GodownEntryå…¥åº“å•ç»“æ„
+-- GodownEntryÈë¿âµ¥½á¹¹
 --
 DROP TABLE IF EXISTS GodownEntry;
 
 CREATE TABLE GodownEntry (
-id int primary key auto_increment, -- å…¥åº“å•ç¼–å·
-commodity_id int not null, -- å…¥åº“å•†å“id
-user_id int not null, -- å½•å…¥ç”¨æˆ·ç¼–å·
-purchase_price decimal(12, 2) not null, -- è¿›è´§ä»·æ ¼
-number int not null, -- å…¥åº“æ•°é‡
-entry_time datetime not null, -- å½•å…¥æ—¶é—´
-supplier_id int, -- ä¾›åº”å•†id
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- Èë¿âµ¥±àºÅ
+commodity_id int not null, -- Èë¿âÉÌÆ·id
+user_id int not null, -- Â¼ÈëÓÃ»§±àºÅ
+purchase_price decimal(12, 2) not null, -- ½ø»õ¼Û¸ñ
+number int not null, -- Èë¿âÊıÁ¿
+entry_time datetime not null, -- Â¼ÈëÊ±¼ä
+supplier_id int, -- ¹©Ó¦ÉÌid
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- TransactionListäº¤æ˜“æ¸…å•æ¸…å•ç»“æ„
+-- TransactionList½»Ò×Çåµ¥Çåµ¥½á¹¹
 --
 DROP TABLE IF EXISTS TransactionList;
 
 CREATE TABLE TransactionList (
-id int primary key auto_increment, -- äº¤æ˜“æ¸…å•ç¼–å·
-entry_user_id int not null, -- å½•å…¥ç”¨æˆ·ç¼–å·
-entry_time datetime not null, -- å½•å…¥æ—¶é—´
-closing_user_id int, -- ç»“æŸäº¤æ˜“ç”¨æˆ·ç¼–å·
-closing_time datetime, -- ç»“æŸäº¤æ˜“æ—¶é—´
-amout decimal(12, 2), -- äº¤æ˜“é‡‘é¢
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ½»Ò×Çåµ¥±àºÅ
+entry_user_id int not null, -- Â¼ÈëÓÃ»§±àºÅ
+entry_time datetime not null, -- Â¼ÈëÊ±¼ä
+closing_user_id int, -- ½áÊø½»Ò×ÓÃ»§±àºÅ
+closing_time datetime, -- ½áÊø½»Ò×Ê±¼ä
+amout decimal(12, 2), -- ½»Ò×½ğ¶î
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- BonusListçº¢åˆ©æ¸…å•ç»“æ„
+-- BonusListºìÀûÇåµ¥½á¹¹
 --
 DROP TABLE IF EXISTS BonusList;
 
 CREATE TABLE BonusList (
-id int primary key auto_increment, -- çº¢åˆ©æ¸…å•ç¼–å·
-transaction_id int not null, -- äº¤æ˜“æ¸…å•ç¼–å·
-entry_user_id int not null, -- å½•å…¥ç”¨æˆ·ç¼–å·
-entry_time datetime not null, -- å½•å…¥æ—¶é—´
-amout decimal(12, 2) not null, -- çº¢åˆ©é‡‘é¢
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ºìÀûÇåµ¥±àºÅ
+transaction_id int not null, -- ½»Ò×Çåµ¥±àºÅ
+entry_user_id int not null, -- Â¼ÈëÓÃ»§±àºÅ
+entry_time datetime not null, -- Â¼ÈëÊ±¼ä
+amout decimal(12, 2) not null, -- ºìÀû½ğ¶î
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- AccountSaleså•†å“é”€å”®æ¸…å•ç»“æ„
+-- AccountSalesÉÌÆ·ÏúÊÛÇåµ¥½á¹¹
 --
 DROP TABLE IF EXISTS AccountSales;
 
 CREATE TABLE AccountSales (
-id int primary key auto_increment, -- é”€å”®æ¸…å•ç¼–å·
-transaction_id int not null, -- äº¤æ˜“æ¸…å•ç¼–å·
-entry_user_id int not null, -- å½•å…¥ç”¨æˆ·ç¼–å·
-entry_time datetime not null, -- å½•å…¥æ—¶é—´
-commodity_id int not null, -- å•†å“ç¼–å·
-number int not null, -- å•†å“æ•°é‡
-amout decimal(12, 2) not null, -- æ€»é‡‘é¢
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ÏúÊÛÇåµ¥±àºÅ
+transaction_id int not null, -- ½»Ò×Çåµ¥±àºÅ
+entry_user_id int not null, -- Â¼ÈëÓÃ»§±àºÅ
+entry_time datetime not null, -- Â¼ÈëÊ±¼ä
+commodity_id int not null, -- ÉÌÆ·±àºÅ
+number int not null, -- ÉÌÆ·ÊıÁ¿
+amout decimal(12, 2) not null, -- ×Ü½ğ¶î
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- CommodityReturné€€è´§æ¸…å•
+-- CommodityReturnÍË»õÇåµ¥
 --
 DROP TABLE IF EXISTS CommodityReturn;
 
 CREATE TABLE CommodityReturn (
-id int primary key auto_increment, -- é”€å”®æ¸…å•ç¼–å·
-account_id int not null, -- é”€å”®æ¸…å•ç¼–å·
-entry_user_id int not null, -- å½•å…¥ç”¨æˆ·ç¼–å·
-entry_time datetime not null, -- å½•å…¥æ—¶é—´
-commodity_id int not null, -- å•†å“ç¼–å·
-number int not null, -- é€€å›å•†å“æ•°é‡
-amout decimal(12, 2) not null, -- æ€»é‡‘é¢
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ÏúÊÛÇåµ¥±àºÅ
+account_id int not null, -- ÏúÊÛÇåµ¥±àºÅ
+entry_user_id int not null, -- Â¼ÈëÓÃ»§±àºÅ
+entry_time datetime not null, -- Â¼ÈëÊ±¼ä
+commodity_id int not null, -- ÉÌÆ·±àºÅ
+number int not null, -- ÍË»ØÉÌÆ·ÊıÁ¿
+amout decimal(12, 2) not null, -- ×Ü½ğ¶î
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- ChessRoomStateæ£‹ç‰Œæˆ¿é—´çŠ¶æ€è¡¨æ•°æ®ç»“æ„
+-- ChessRoomStateÆåÅÆ·¿¼ä×´Ì¬±íÊı¾İ½á¹¹
 --
 DROP TABLE IF EXISTS ChessRoomState;
 
 CREATE TABLE ChessRoomState (
-id int primary key auto_increment, -- æ£‹ç‰Œæˆ¿é—´çŠ¶æ€id
-name varchar(20) not null unique -- æˆ¿é—´çŠ¶æ€åç§°
+id int primary key auto_increment, -- ÆåÅÆ·¿¼ä×´Ì¬id
+name varchar(20) not null unique -- ·¿¼ä×´Ì¬Ãû³Æ
 );
 
--- æ’å…¥æˆ¿é—´çŠ¶æ€å†…å®¹
+-- ²åÈë·¿¼ä×´Ì¬ÄÚÈİ
 LOCK TABLES ChessRoomState WRITE;
 insert into ChessRoomState values
-(1, 'ç©ºé—²'),
-(2, 'é¢„å®š'),
-(3, 'è®¡è´¹'),
-(4, 'æŒ‚èµ·');
+(1, '¿ÕÏĞ'),
+(2, 'Ô¤¶¨'),
+(3, '¼Æ·Ñ'),
+(4, '¹ÒÆğ');
 UNLOCK TABLES;
 --
--- ChessMemberæ£‹ç‰Œä¼šå‘˜
+-- ChessMemberÆåÅÆ»áÔ±
 --
 DROP TABLE IF EXISTS ChessMember;
 
 CREATE TABLE ChessMember (
-id int primary key auto_increment, -- ä¼šå‘˜id
-name varchar(20) not null unique, -- ä¼šå‘˜åç§°
-cellphone varchar(20), -- æ‰‹æœº
-telephone varchar(20), -- ç”µè¯
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- »áÔ±id
+name varchar(20) not null unique, -- »áÔ±Ãû³Æ
+cellphone varchar(20), -- ÊÖ»ú
+telephone varchar(20), -- µç»°
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- ChessRoomæ£‹ç‰Œæˆ¿é—´æ•°æ®ç»“æ„
+-- ChessRoomÆåÅÆ·¿¼äÊı¾İ½á¹¹
 --
 DROP TABLE IF EXISTS ChessRoom;
 
 CREATE TABLE ChessRoom (
-id int primary key auto_increment, -- æ£‹ç‰Œæˆ¿é—´id
-name varchar(20) not null unique, -- æˆ¿é—´åç§°
-status int not null, -- æˆ¿é—´å½“å‰çŠ¶æ€id
-charging_formula varchar(512), -- è®¡è´¹å…¬å¼
-scheduled_time datetime, -- é¢„å®šæ—¶é—´(å¯ä»¥ä¸ºç©º)
-scheduled_member_id int, -- é¢„å®šä¼šå‘˜id
-current_record_id int, -- å½“å‰ChessRoomRecordè®°å½•id
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ÆåÅÆ·¿¼äid
+name varchar(20) not null unique, -- ·¿¼äÃû³Æ
+status int not null, -- ·¿¼äµ±Ç°×´Ì¬id
+charging_formula varchar(512), -- ¼Æ·Ñ¹«Ê½
+scheduled_time datetime, -- Ô¤¶¨Ê±¼ä(¿ÉÒÔÎª¿Õ)
+scheduled_member_id int, -- Ô¤¶¨»áÔ±id
+current_record_id int, -- µ±Ç°ChessRoomRecord¼ÇÂ¼id
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- ChessFormulaChangesæ£‹ç‰Œæˆ¿é—´è®¡è´¹å…¬å¼ä¿®æ”¹è®°å½•
+-- ChessFormulaChangesÆåÅÆ·¿¼ä¼Æ·Ñ¹«Ê½ĞŞ¸Ä¼ÇÂ¼
 --
 DROP TABLE IF EXISTS ChessFormulaChanges;
 
 CREATE TABLE ChessFormulaChanges (
-id int primary key auto_increment, -- æ£‹ç‰Œæˆ¿é—´è®¡è´¹å…¬å¼ä¿®æ”¹è®°å½•id
-room_id int not null, -- æˆ¿é—´ç¼–å·
-entry_user_id int not null, -- å½•å…¥ç”¨æˆ·ç¼–å·
-entry_time datetime not null, -- å½•å…¥æ—¶é—´
-new_formula varchar(512), -- æ–°è®¡è´¹å…¬å¼
-old_formula varchar(512), -- æ—§è®¡è´¹å…¬å¼
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ÆåÅÆ·¿¼ä¼Æ·Ñ¹«Ê½ĞŞ¸Ä¼ÇÂ¼id
+room_id int not null, -- ·¿¼ä±àºÅ
+entry_user_id int not null, -- Â¼ÈëÓÃ»§±àºÅ
+entry_time datetime not null, -- Â¼ÈëÊ±¼ä
+new_formula varchar(512), -- ĞÂ¼Æ·Ñ¹«Ê½
+old_formula varchar(512), -- ¾É¼Æ·Ñ¹«Ê½
+remark varchar(260) -- ±¸×¢
 );
 
 --
--- ChessRoomRecordæ£‹ç‰Œæˆ¿é—´å¼€æˆ¿è®°å½•
+-- ChessRoomRecordÆåÅÆ·¿¼ä¿ª·¿¼ÇÂ¼
 --
 DROP TABLE IF EXISTS ChessRoomRecord;
 
 CREATE TABLE ChessRoomRecord (
-id int primary key auto_increment, -- æ£‹ç‰Œæˆ¿é—´å¼€æˆ¿è®°å½•id
-transaction_id int not null, -- äº¤æ˜“æ¸…å•ç¼–å·
-room_id int not null, -- æˆ¿é—´ç¼–å·
-entry_user_id int, -- å½•å…¥ç”¨æˆ·ç¼–å·
-entry_time datetime, -- å½•å…¥æ—¶é—´
-closing_user_id int, -- ç»“æŸäº¤æ˜“ç”¨æˆ·ç¼–å·
-closing_time datetime, -- ç»“æŸäº¤æ˜“æ—¶é—´
-amout decimal(12, 2), -- æˆ¿è´¹é‡‘é¢
-remark varchar(260) -- å¤‡æ³¨
+id int primary key auto_increment, -- ÆåÅÆ·¿¼ä¿ª·¿¼ÇÂ¼id
+transaction_id int not null, -- ½»Ò×Çåµ¥±àºÅ
+room_id int not null, -- ·¿¼ä±àºÅ
+entry_user_id int, -- Â¼ÈëÓÃ»§±àºÅ
+entry_time datetime, -- Â¼ÈëÊ±¼ä
+closing_user_id int, -- ½áÊø½»Ò×ÓÃ»§±àºÅ
+closing_time datetime, -- ½áÊø½»Ò×Ê±¼ä
+amout decimal(12, 2), -- ·¿·Ñ½ğ¶î
+remark varchar(260) -- ±¸×¢
 );
 
 
