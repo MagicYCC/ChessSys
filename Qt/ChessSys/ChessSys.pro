@@ -45,7 +45,8 @@ SOURCES += main.cpp\
     com/odbcexcel.cpp \
     ui/categorybrowsedialog.cpp \
     ui/chessroomopendialog.cpp \
-    ui/formulacalcuaverform.cpp
+    ui/formulacalcuaverform.cpp \
+    ui/formulacalcu2slotsform.cpp
 
 HEADERS  += \
     chess_sys_db/chess_sys_user.h \
@@ -79,7 +80,8 @@ HEADERS  += \
     com/odbcexcel.h \
     ui/categorybrowsedialog.h \
     ui/chessroomopendialog.h \
-    ui/formulacalcuaverform.h
+    ui/formulacalcuaverform.h \
+    ui/formulacalcu2slotsform.h
 
 INCLUDEPATH += \
     ui \
@@ -114,5 +116,6 @@ FORMS    += \
     ui/timeslotform.ui \
     ui/categorybrowsedialog.ui \
     ui/chessroomopendialog.ui \
-    ui/formulacalcuaverform.ui
+    ui/formulacalcuaverform.ui \
+    ui/formulacalcu2slotsform.ui
 

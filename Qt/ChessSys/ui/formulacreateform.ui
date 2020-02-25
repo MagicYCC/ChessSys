@@ -58,6 +58,11 @@
          <string>平均</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>时间分段（两段）</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>
@@ -68,7 +73,7 @@
       <number>1</number>
      </property>
      <widget class="QWidget" name="averPage"/>
-     <widget class="QWidget" name="towSlotPage"/>
+     <widget class="QWidget" name="twoSlotPage"/>
     </widget>
    </item>
    <item>
