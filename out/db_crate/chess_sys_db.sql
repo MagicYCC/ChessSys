@@ -231,7 +231,7 @@ CREATE TABLE ChessRoom (
 id int primary key auto_increment, -- 棋牌房间id
 name varchar(20) not null unique, -- 房间名称
 status int not null, -- 房间当前状态id
-charging_formula varchar(512), -- 计费公式
+charging_formula varchar(8192), -- 计费公式
 scheduled_time datetime, -- 预定时间(可以为空)
 scheduled_member_id int, -- 预定会员id
 current_record_id int, -- 当前ChessRoomRecord记录id
@@ -248,8 +248,8 @@ id int primary key auto_increment, -- 棋牌房间计费公式修改记录id
 room_id int not null, -- 房间编号
 entry_user_id int not null, -- 录入用户编号
 entry_time datetime not null, -- 录入时间
-new_formula varchar(512), -- 新计费公式
-old_formula varchar(512), -- 旧计费公式
+new_formula varchar(8192), -- 新计费公式
+old_formula varchar(8192), -- 旧计费公式
 remark varchar(260) -- 备注
 );
 

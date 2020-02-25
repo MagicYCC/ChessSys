@@ -17,5 +17,8 @@ flush privileges;
 use mysql;
 select host,user from user;
 
-执行sql文件(未能成功,直接手动执行)
--- mysql -h localhost -u root -peoWn_.qQ < G:\MySQL\chess_sys_db.sql
+执行chess_sys_db.sql文件(未能成功,直接手动执行)
+-- source G:\MySQL\chess_sys_db.sql
+
+update_db.sql用于完成数据库配置的更新(未能成功,直接手动执行)
+-- source G:\MySQL\update_db.sql
