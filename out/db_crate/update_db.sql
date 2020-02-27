@@ -1,3 +1,5 @@
-ALTER TABLE ChessRoom MODIFY charging_formula varchar(8192);
-ALTER TABLE ChessFormulaChanges MODIFY new_formula varchar(8192);
-ALTER TABLE ChessFormulaChanges MODIFY old_formula varchar(8192);
+use chess_sys_db;
+
+ALTER TABLE ChessRoom MODIFY charging_formula TEXT;
+ALTER TABLE ChessFormulaChanges MODIFY new_formula TEXT;
+ALTER TABLE ChessFormulaChanges MODIFY old_formula TEXT;
