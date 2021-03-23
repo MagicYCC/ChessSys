@@ -163,6 +163,13 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QListWidget" name="chessRoomList">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="viewMode">
           <enum>QListView::IconMode</enum>
          </property>
