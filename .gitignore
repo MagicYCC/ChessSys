@@ -5,7 +5,9 @@
 *.o
 *.obj
 *.user
-Qt/*Debug
-Qt/*Release
-Qt/settings
-Qt/skin
+*.dll
+/Qt/*Debug
+/Qt/*Release
+/Qt/settings
+/Qt/skin
+/Out/bin
